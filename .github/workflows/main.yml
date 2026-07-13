@@ -1,12 +1,11 @@
-name : OTF Testing
+name: OTF Testing
 on:
   push:
     branches:
       - main
-
 jobs:
   test:
-    name: Functional test
+    name: Functional Test
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
@@ -24,10 +23,10 @@ jobs:
 
       - name: Get AUT URL
         run: |
-          URL=http://$(ip -f inet -o addr show docker0 | awk '{print $4}' | cut -d '/' -f 1)
+          URL=http://$(ip -f inet addr show docker0 | awk '{print $4}' | cut -d '/' -f 1)
           echo "URL=$URL" >> $GITHUB_ENV
 
-      - name: Check AUT URL
+      - name: Check AUT Url
         run: curl ${{ env.URL }}
 
       - name: stop docker
